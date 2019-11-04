@@ -1,0 +1,25 @@
+*****PT-BR*****
+
+Contexto:
+
+Tela de Gameplay
+- Haverá um Circulo central onde será o parâmetro (de tamanho) para o momento de clique dos circulos externos;
+- Um círculo externo surgirá, de tamanho maior que o círculo central, diminuindo seu tamanho proceduralmente;
+- Quando esse círculo externo atingir o tamanho aproximado do tamanho do círculo central, o jogador, ao clicar quanha um ponto;
+- Quando o momento do clique ocorre e o tamanho do circulo externo for "exato" ao tamanho do círculo central, então o jogador 
+ganha um bônus (pode ser pontos a mais);
+- Caso o jogador não se aproxime do tamanho do círculo central, deixando o circulo externo ou maior ou menor. O jogo acaba;
+- Quando o jogo acabar, as informações de maior pontuação e pontuação atual aparecem na tela;
+- Surgirá um Botão de iniciar uma nova partida (e um de sair, contra a vontade do Sr. Farms).
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+Lógica Abstrata:
+
+Círculo Externo
+- Inicialmente pretendo sempre reutilizar o mesmo círculo, quando ele for "destruído" no momento que o jogador tocar na tela, vou
+apenas mudar seu tamanho, transformando suas propriedades de tamanho e velocidade. 
+- Para fazer o círculo externo diminuir de tamanho, utilizarei um plugin chamado iTween. É um manipulador de motion que permite 
+utilizar easeIn, easeOut, entre outros na animação.
+
+    Para utilizar o game event
