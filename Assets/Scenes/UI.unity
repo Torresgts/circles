@@ -335,6 +335,7 @@ GameObject:
   - component: {fileID: 72406274}
   - component: {fileID: 72406276}
   - component: {fileID: 72406275}
+  - component: {fileID: 72406277}
   m_Layer: 5
   m_Name: Score_Text (TMP)
   m_TagString: Untagged
@@ -481,6 +482,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 72406273}
   m_CullTransparentMesh: 0
+--- !u!114 &72406277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72406273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dac187f455199945916c5c77f865afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 72406275}
 --- !u!1 &77055502
 GameObject:
   m_ObjectHideFlags: 0
@@ -1379,6 +1393,8 @@ GameObject:
   - component: {fileID: 858973502}
   - component: {fileID: 858973501}
   - component: {fileID: 858973503}
+  - component: {fileID: 858973506}
+  - component: {fileID: 858973504}
   m_Layer: 5
   m_Name: ExternalCircle
   m_TagString: Untagged
@@ -1449,9 +1465,36 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 858973499}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fffbf975562c2a840ab16a33fe43097f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &858973504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858973499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c574b3b2b24957e4fa70ec569abbd4ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lerpTime: 4
+  startScale: {x: 1, y: 1}
+  endScale: {x: 0, y: 0}
+--- !u!114 &858973506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858973499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4dbfe613d7fdf34aa1b18cfd2363636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &893620895
@@ -1947,7 +1990,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1602405070}
-  - component: {fileID: 1602405071}
   m_Layer: 5
   m_Name: ScoreHandler
   m_TagString: Untagged
@@ -1974,19 +2016,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1602405071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1602405069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a1da773f3f7d54469bdde9c1f315ffe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoretext: {fileID: 72406275}
 --- !u!1 &1721196738
 GameObject:
   m_ObjectHideFlags: 0
