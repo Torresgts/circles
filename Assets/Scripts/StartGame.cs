@@ -6,14 +6,19 @@ public class StartGame : MonoBehaviour
 {
     void Start()
     {
-        PlayGame();
+        //PlayGame();
     }
 
-    public void PlayGame(){
-        EventManager.SetGameplayTimeParameter.Invoke();
-        EventManager.SetGameplayTimeParameter.Invoke();
+    public void PlayGame()
+    {
+        //StartCoroutine(StartGameplay());
+        EventManager.OnPlayGame.Invoke();
+    }
 
-        EventManager.ReduceCircleScaleLerp.Invoke();
+    IEnumerator StartGameplay()
+    {
+        yield return new WaitForSeconds(1f);
+        EventManager.OnPlayGame.Invoke();
     }
 
 }

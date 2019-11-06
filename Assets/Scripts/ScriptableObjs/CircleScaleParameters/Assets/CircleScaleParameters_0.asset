@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScaleTollerance: 0.12
   minScaleTollerance: 0.05
+  perfectScaleMinimum: 0.08
+  perfectScaleMaximum: 0.095

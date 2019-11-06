@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class ExternalCircleTime : MonoBehaviour
 {
-    public static float lerpTime; 
-    private void Awake() {
-        
-    }
+    public static float lerpTime;
 
-     private void ReduceTime(){
-        if(ExternalCircleTime.lerpTime > GameplayParameters.minimumTime)
+    private void ReduceTime()
+    {
+        if (ExternalCircleTime.lerpTime > GameplayParameters.minimumTime)
         {
             ExternalCircleTime.lerpTime -= GameplayParameters.timeReduceAmount;
         }

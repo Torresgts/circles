@@ -8,4 +8,7 @@ public class CircleScaleParametersScriptableObject : ScriptableObject
     public float maxScaleTollerance;
 
     public float minScaleTollerance;
+
+    public float perfectScaleMinimum;
+    public float perfectScaleMaximum;
 }

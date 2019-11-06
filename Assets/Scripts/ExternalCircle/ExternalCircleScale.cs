@@ -5,8 +5,4 @@ using UnityEngine;
 public class ExternalCircleScale : MonoBehaviour
 {
    public static float circleScaleX;
-
-   private void Update() {
-       //Debug.Log(circleScaleX);
-   }
 }

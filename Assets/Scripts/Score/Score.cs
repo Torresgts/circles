@@ -4,25 +4,41 @@ using UnityEngine;
 
 public class Score : MonoBehaviour
 {
-
     public static int score = 0;
-    
-    void Awake()
+
+     private void OnEnable()
     {
-      EventManager.IncrementScore.AddListener(IncrementScore);
-      EventManager.IncrementBonusScore.AddListener(IncrementBonusScore);
+        EventManager.OnGoodTouch.AddListener(IncrementScore);
+        EventManager.OnPerfectTouch.AddListener(IncrementBonusScore);
+        EventManager.OnPlayGame.AddListener(ZeroScore);
+        
+    }
+
+    private void OnDisable() {
+        EventManager.OnGoodTouch.RemoveListener(IncrementScore);
+        EventManager.OnPerfectTouch.RemoveListener(IncrementBonusScore);
+        EventManager.OnPlayGame.RemoveListener(ZeroScore);
     }
 
     public void IncrementScore(){
-        if(Input.GetMouseButtonDown(0)){
-           score++;
-        }   
+        score++;
+        
+        /*if(Input.GetMouseButtonDown(0)){
+           
+        }   */
     }
 
     public void IncrementBonusScore(){
-        if(Input.GetMouseButtonDown(0)){
+        score = score + 3;
+
+       /* if(Input.GetMouseButtonDown(0)){
            score++;
-        }   
+        }   */
+    }
+
+    public void ZeroScore()
+    {
+        score = 0;
     }
     
 }
