@@ -24,7 +24,6 @@ public class TouchConditions : MonoBehaviour
     public void EnableThisScript()
     {
        touchConditions.enabled = true; 
-       //EventManager.OnPlayGame.Invoke();    
     }
 
     public void DisableThisScript()
