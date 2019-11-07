@@ -12,6 +12,9 @@ public static class EventManager
     public static UnityEvent OnPlayGame = new UnityEvent(); 
 
 
+    public static UnityEvent OnGameDataUpdated = new UnityEvent();
+
+
 }
 
 //public class ImageEvent : UnityEvent<Image> { };

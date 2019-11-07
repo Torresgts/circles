@@ -24,9 +24,18 @@ public class GameplayParameters : MonoBehaviour
 
     public void SetGameplayTimeParameter()
     {
-        initialTime = circleParametersList.circleTimeParameters[0].initialTime;
-        timeReduceAmount = circleParametersList.circleTimeParameters[0].timeReduceAmount;
-        minimumTime = circleParametersList.circleTimeParameters[0].minimumTime;
+        if (PlayFabLogin.loginIsDone)
+        {
+            EventManager.OnGameDataUpdated.Invoke();
+        }
+        else
+        {
+            initialTime = circleParametersList.circleTimeParameters[0].initialTime;
+            timeReduceAmount = circleParametersList.circleTimeParameters[0].timeReduceAmount;
+            minimumTime = circleParametersList.circleTimeParameters[0].minimumTime;
+        }
+
+
     }
 
     public void SetGameplayScaleParameters()
