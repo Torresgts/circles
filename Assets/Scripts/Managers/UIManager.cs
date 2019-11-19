@@ -5,18 +5,18 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject MainMenuUI;
+    private Canvas MainMenuUI;
    
     [SerializeField]
-    private GameObject GameplayUI;
+    private Canvas GameplayUI;
 
     [SerializeField]
-    private GameObject GameOverUI;
+    private Canvas GameOverUI;
 
     private void Awake() 
     {
         EventManager.OnMainMenu.AddListener(ActiveMainMenuUI);
-        EventManager.OnPlayGame.AddListener(ActiveGameplayUI);
+        EventManager.OnPlayGameButton.AddListener(ActiveGameplayUI);
         EventManager.OnFailedTouch.AddListener(ActiveGameOverUI);
 
         ActiveMainMenuUI();
@@ -24,23 +24,23 @@ public class UIManager : MonoBehaviour
 
     public void ActiveMainMenuUI()
     {
-        MainMenuUI.gameObject.SetActive(true);
-        GameplayUI.gameObject.SetActive(false);
-        GameOverUI.gameObject.SetActive(false);
+        MainMenuUI.enabled = true;
+        GameplayUI.enabled = false;
+        GameOverUI.enabled = false;
     }
 
     public void ActiveGameplayUI()
     {
-        MainMenuUI.gameObject.SetActive(false);
-        GameplayUI.gameObject.SetActive(true);
-        GameOverUI.gameObject.SetActive(false);
+        MainMenuUI.enabled = false;
+        GameplayUI.enabled = true;
+        GameOverUI.enabled = false;
     }
 
      public void ActiveGameOverUI()
     {
-        MainMenuUI.gameObject.SetActive(false);
-        GameplayUI.gameObject.SetActive(false);
-        GameOverUI.gameObject.SetActive(true);
+        MainMenuUI.enabled = false;
+        GameplayUI.enabled = false;
+        GameOverUI.enabled = true;
     }
    
 }

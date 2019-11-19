@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b3ec8a728202144b85bfc8e64f3cc9b, type: 3}
   m_Name: CircleScaleParameters_0
   m_EditorClassIdentifier: 
-  maxScaleTollerance: 0.12
-  minScaleTollerance: 0.05
-  perfectScaleMinimum: 0.08
-  perfectScaleMaximum: 0.095
+  maxScaleTollerance: 0.1
+  minScaleTollerance: 0.0601
+  perfectScaleMinimum: 0.049
+  perfectScaleMaximum: 0.06

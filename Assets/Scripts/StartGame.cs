@@ -4,21 +4,17 @@ using UnityEngine;
 
 public class StartGame : MonoBehaviour
 {
-    void Start()
-    {
-        //PlayGame();
-    }
-
     public void PlayGame()
     {
-        //StartCoroutine(StartGameplay());
-        EventManager.OnPlayGame.Invoke();
+       // StartCoroutine(PlayTheGame());
+       EventManager.OnPlayGameButton.Invoke();
+       EventManager.OnPlaySound.Invoke("ButtonClick");
+        
     }
 
-    IEnumerator StartGameplay()
+    IEnumerator PlayTheGame()
     {
-        yield return new WaitForSeconds(1f);
-        EventManager.OnPlayGame.Invoke();
+        yield return new WaitForEndOfFrame();
+        //EventManager.OnPlayGame.Invoke();
     }
-
 }

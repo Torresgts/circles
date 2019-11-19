@@ -14,18 +14,20 @@ public class Score : MonoBehaviour
     {
         EventManager.OnGoodTouch.AddListener(IncrementScore);
         EventManager.OnPerfectTouch.AddListener(IncrementBonusScore);
-        EventManager.OnPlayGame.AddListener(ZeroScore);
+        EventManager.OnPlayGameButton.AddListener(ZeroScore);
 
         EventManager.OnFailedTouch.AddListener(SaveBestScore);
+        EventManager.OnMainMenu.AddListener(SaveBestScore);
         
     }
 
     private void OnDisable() {
         EventManager.OnGoodTouch.RemoveListener(IncrementScore);
         EventManager.OnPerfectTouch.RemoveListener(IncrementBonusScore);
-        EventManager.OnPlayGame.RemoveListener(ZeroScore);
+        EventManager.OnPlayGameButton.RemoveListener(ZeroScore);
 
         EventManager.OnFailedTouch.RemoveListener(SaveBestScore);
+        EventManager.OnMainMenu.RemoveListener(SaveBestScore);
     }
 
     public void IncrementScore(){
@@ -33,7 +35,7 @@ public class Score : MonoBehaviour
     }
 
     public void IncrementBonusScore(){
-        score = score + 3;
+        score += 3;
     }
 
     public void ZeroScore()
@@ -50,10 +52,12 @@ public class Score : MonoBehaviour
             {
                 PlayerPrefs.SetInt(bestScoreKey, score);
                 bestScore = score;
+                EventManager.OnUpdateUI.Invoke();
             }
             else
             {
                 bestScore = PlayerPrefs.GetInt(bestScoreKey, 0);
+                EventManager.OnUpdateUI.Invoke();
             }
         }
         else
@@ -61,6 +65,8 @@ public class Score : MonoBehaviour
             PlayerPrefs.SetInt(bestScoreKey, score);
             bestScore = score;
         }
+
+         //Debug.Log("Score saved! " + bestScore);
     }
     
 }

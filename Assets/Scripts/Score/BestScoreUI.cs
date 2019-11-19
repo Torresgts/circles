@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 
 public class BestScoreUI : MonoBehaviour
@@ -12,7 +10,13 @@ public class BestScoreUI : MonoBehaviour
 
     private void OnEnable() 
     {
-        EventManager.OnFailedTouch.AddListener(IncrementGameOverScoreAndBestScoreUI);    
+        EventManager.OnFailedTouch.AddListener(IncrementGameOverScoreAndBestScoreUI);   
+        EventManager.OnUpdateUI.AddListener(IncrementGameOverScoreAndBestScoreUI); 
+    }
+
+    private void OnDisable()
+    {
+         EventManager.OnFailedTouch.RemoveListener(IncrementGameOverScoreAndBestScoreUI);
     }
 
       public void IncrementGameOverScoreAndBestScoreUI()

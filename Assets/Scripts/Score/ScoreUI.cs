@@ -17,14 +17,14 @@ public class ScoreUI : MonoBehaviour
     {
         EventManager.OnGoodTouch.AddListener(IncrementScoreText);
         EventManager.OnPerfectTouch.AddListener(IncrementScoreText);
-        EventManager.OnPlayGame.AddListener(IncrementScoreText);
+        EventManager.OnPlayGameButton.AddListener(IncrementScoreText);
     }
 
     private void OnDisable()
     {
         EventManager.OnGoodTouch.RemoveListener(IncrementScoreText);
         EventManager.OnPerfectTouch.RemoveListener(IncrementScoreText);
-        EventManager.OnPlayGame.RemoveListener(IncrementScoreText);
+        EventManager.OnPlayGameButton.RemoveListener(IncrementScoreText);
     }
 
     public void IncrementScoreText()

@@ -15,13 +15,13 @@ public class LerpScale : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.OnPlayGame.AddListener(SetLerpTime);
+        EventManager.OnStartGameplay.AddListener(SetLerpTime);
         EventManager.OnGoodTouch.AddListener(ReduceLerpTime);
     }
 
     private void OnDisable()
     {
-        EventManager.OnPlayGame.RemoveListener(SetLerpTime);
+        EventManager.OnStartGameplay.RemoveListener(SetLerpTime);
         EventManager.OnGoodTouch.RemoveListener(ReduceLerpTime);
     }
 
@@ -33,23 +33,25 @@ public class LerpScale : MonoBehaviour
     public void SetLerpTime()
     {
         lerpTime = GameplayParameters.initialTime;
-        Debug.Log(lerpTime);
+       // Debug.Log(lerpTime);
     }
 
     public void ReduceLerpTime()
     {
         lerpTime -= GameplayParameters.timeReduceAmount;
+        //Debug.Log("Lerp Time " + lerpTime);
     }
 
     public void StartLerping()
     {
-        timeStartedLerping = Time.time;
-        shouldLerp = true;
+            timeStartedLerping = Time.time;
+            shouldLerp = true;
+        
     }
 
     private void Update()
     {
-        if (shouldLerp)
+        if (shouldLerp && GameplayParameters.gameplayStarted)
         {
             transform.localScale = Lerp(startScale, endScale, timeStartedLerping, lerpTime);
         }

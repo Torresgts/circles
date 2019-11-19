@@ -14,13 +14,13 @@ public class ExternalCircleUI : MonoBehaviour
     {
         EventManager.OnGoodTouch.AddListener(ReduceCircleScaleLerp);
         EventManager.OnPerfectTouch.AddListener(ReduceCircleScaleLerp);
-        EventManager.OnPlayGame.AddListener(ReduceCircleScaleLerp);
+        EventManager.OnStartGameplay.AddListener(ReduceCircleScaleLerp);
     }
     private void OnDisable()
     {
         EventManager.OnGoodTouch.RemoveListener(ReduceCircleScaleLerp);
         EventManager.OnPerfectTouch.RemoveListener(ReduceCircleScaleLerp);
-        EventManager.OnPlayGame.RemoveListener(ReduceCircleScaleLerp);
+        EventManager.OnStartGameplay.RemoveListener(ReduceCircleScaleLerp);
         
     }
 
@@ -37,7 +37,7 @@ public class ExternalCircleUI : MonoBehaviour
 
     IEnumerator ReduceCircleLerp()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForEndOfFrame();
         lerpScale.StartLerping();
         lerpScale.endScale = Vector2.zero;
 

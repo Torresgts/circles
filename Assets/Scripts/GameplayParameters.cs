@@ -7,26 +7,33 @@ public class GameplayParameters : MonoBehaviour
     public static float initialTime, timeReduceAmount, minimumTime;
     public static float maxScaleTollerance, minScaleTollerance, perfectScaleMinimum, perfectScaleMaximum;
 
+    public static bool gameplayStarted = false;
+
     [SerializeField]
     public CircleParametersListScriptableObjects circleParametersList;
 
     private void OnEnable()
     {
-        EventManager.OnPlayGame.AddListener(SetGameplayTimeParameter);
-        EventManager.OnPlayGame.AddListener(SetGameplayScaleParameters);
+        EventManager.OnPlayGameButton.AddListener(SetGameplayTimeParameter);
+        EventManager.OnPlayGameButton.AddListener(SetGameplayScaleParameters);
+        EventManager.OnStartGameplay.AddListener(AllowGameplayToStart);
     }
 
     private void OnDisable()
     {
-        EventManager.OnPlayGame.RemoveListener(SetGameplayTimeParameter);
-        EventManager.OnPlayGame.RemoveListener(SetGameplayScaleParameters);
+        EventManager.OnPlayGameButton.RemoveListener(SetGameplayTimeParameter);
+        EventManager.OnPlayGameButton.RemoveListener(SetGameplayScaleParameters);
     }
 
     public void SetGameplayTimeParameter()
     {
-        if (PlayFabLogin.loginIsDone)
+        if (PlayFabLogin.loginIsDone && GameVersion.isDifferentVersion)
         {
             EventManager.OnGameDataUpdated.Invoke();
+        }
+        else if (PlayFabLogin.loginIsDone && !GameVersion.isDifferentVersion && PlayerPrefs.HasKey(PlayFabGetCircleParameters.initialTimeKey))
+        {
+            EventManager.OnGameDataNotUpdated.Invoke();
         }
         else
         {
@@ -44,5 +51,19 @@ public class GameplayParameters : MonoBehaviour
         minScaleTollerance = circleParametersList.circleScaleParameters[0].minScaleTollerance;
         perfectScaleMinimum = circleParametersList.circleScaleParameters[0].perfectScaleMinimum;
         perfectScaleMaximum = circleParametersList.circleScaleParameters[0].perfectScaleMaximum;
+
+        //Debug.Log(maxScaleTollerance + " " + minScaleTollerance + " " + perfectScaleMinimum + " " + perfectScaleMaximum);
+    }
+
+    public void AllowGameplayToStart()
+    {
+        StartCoroutine(WaitAndAllowGameplayToStart());
+        //gameplayStarted = true;
+    }
+
+    IEnumerator WaitAndAllowGameplayToStart()
+    {
+        yield return new WaitForSeconds(1);
+        gameplayStarted = true;
     }
 }

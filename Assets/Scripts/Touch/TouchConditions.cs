@@ -9,7 +9,10 @@ public class TouchConditions : MonoBehaviour
 
     private void OnEnable() 
     {
-        EventManager.OnPlayGame.Invoke();
+        //EventManager.OnPlayGame.Invoke();
+
+        EventManager.OnStartGameplay.Invoke();
+
     }
 
     private void Awake() 
@@ -18,7 +21,7 @@ public class TouchConditions : MonoBehaviour
 
         EventManager.OnMainMenu.AddListener(DisableThisScript);
         EventManager.OnFailedTouch.AddListener(DisableThisScript);
-        EventManager.OnPlayGame.AddListener(EnableThisScript);
+        EventManager.OnPlayGameButton.AddListener(EnableThisScript);
     }
 
     public void EnableThisScript()
@@ -38,31 +41,38 @@ public class TouchConditions : MonoBehaviour
 
     public void TouchScreen()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && GameplayParameters.gameplayStarted)
         {
-            if (ExternalCircleScale.circleScaleX < GameplayParameters.maxScaleTollerance && ExternalCircleScale.circleScaleX > GameplayParameters.minScaleTollerance)
+            if (ExternalCircleScale.circleScaleX <= GameplayParameters.maxScaleTollerance && ExternalCircleScale.circleScaleX >= GameplayParameters.minScaleTollerance)
             {
                 EventManager.OnGoodTouch.Invoke();
-               // Debug.Log("Good");
+                EventManager.OnPlaySound.Invoke("GoodTouch");
+                //Debug.Log("Good 1 Point");
             }
-
             if (ExternalCircleScale.circleScaleX >= GameplayParameters.perfectScaleMinimum && ExternalCircleScale.circleScaleX <= GameplayParameters.perfectScaleMaximum)
             {
                 EventManager.OnPerfectTouch.Invoke();
-                //Debug.Log("Perfect");
+                EventManager.OnPlaySound.Invoke("PerfectTouch");
+                //Debug.Log("Perfect 3 Points");
             }
-
-            if (ExternalCircleScale.circleScaleX > GameplayParameters.maxScaleTollerance || ExternalCircleScale.circleScaleX < GameplayParameters.minScaleTollerance)
+           if (ExternalCircleScale.circleScaleX > GameplayParameters.maxScaleTollerance || ExternalCircleScale.circleScaleX < GameplayParameters.perfectScaleMinimum)
             {
                 EventManager.OnFailedTouch.Invoke();
+                EventManager.OnPlaySound.Invoke("FailedTouch");
+                GameplayParameters.gameplayStarted = false;
                 //Debug.Log("Failed");
             }
         }
 
-        if (ExternalCircleScale.circleScaleX < GameplayParameters.minScaleTollerance)
+        if (ExternalCircleScale.circleScaleX < GameplayParameters.perfectScaleMinimum)
             {
+                if(GameplayParameters.gameplayStarted)
+                {
+                    EventManager.OnFailedTouch.Invoke();
+                    EventManager.OnPlaySound.Invoke("FailedTouch");
+                    GameplayParameters.gameplayStarted = false;
+                }
                 
-               // Debug.Log("Failed");
             }
     }
 }
